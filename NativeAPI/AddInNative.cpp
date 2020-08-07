@@ -15,6 +15,7 @@
 #include <wchar.h>
 #include "AddInNative.h"
 #include <string>
+#include <clocale>
 
 #define TIME_LEN 65
 
@@ -32,7 +33,7 @@ static const wchar_t* g_PropNamesRu[] = {
 static const wchar_t* g_MethodNamesRu[] = {
 	L"Sleep" };
 
-static const wchar_t g_kClassNames[] = L"CAddInNative"; //"|OtherClass1|OtherClass2";
+static const wchar_t g_kClassNames[] = L"NativeSleep"; //"|OtherClass1|OtherClass2";
 static IAddInDefBase* pAsyncEvent = NULL;
 
 uint32_t convToShortWchar(WCHAR_T** Dest, const wchar_t* Source, uint32_t len = 0);
@@ -121,7 +122,7 @@ void CAddInNative::Done()
 //---------------------------------------------------------------------------//
 bool CAddInNative::RegisterExtensionAs(WCHAR_T** wsExtensionName)
 {
-	const wchar_t* wsExtension = L"NativeSleep";
+	const wchar_t* wsExtension = g_kClassNames;
 	int iActualSize = ::wcslen(wsExtension) + 1;
 	WCHAR_T* dest = 0;
 
